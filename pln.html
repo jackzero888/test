@@ -1,0 +1,106 @@
+<HTML>
+	<body>
+<script>
+	function myclick() {
+		alert('bb');
+		var rtn="{";
+		if (form1.custdata.value.trim()=="") {
+			rtn+='"msg":"No Meter harus diisi"';
+			rtn+=',"code":"0"';
+		}
+		else //if (form1.bcode.value.trim()!="") 
+		{
+			rtn+='"data":[';
+			rtn+='{"custdata":"'+form1.custdata.value+'"}';
+			rtn+=',{"opr":"PLN"}';
+			rtn+=',{"vchpoint":'+form1.iPoint.value+'}';
+			rtn+=',{"nom":"'+form1.iNom.value+'"}';
+			rtn+=']';
+			rtn+=',"code":"1"';
+		}
+		rtn+="}";
+		return rtn;
+	}
+function FillOpr(){ 
+	var f=form1;
+  var Temp;
+
+	var TempArr=f.vOpr.value.split("|");
+	//alert(TempArr.length);
+	var idx=1;
+	for (var i=0;i<TempArr.length;i++) {
+		var TempData=TempArr[i].split(",;,");
+		//alert(TempData[0]);
+    var no = new Option();
+    no.value = TempData[0];
+    no.text = TempData[1];
+    f.iOpr.length=idx;
+    f.iOpr[idx-1] = no;
+    idx++;
+	}
+  FillNom();
+} 	
+function FillNom(){ 
+	var f=form1;
+  var Temp;
+
+	var TempArr=eval('f.Opr_PLN.value').split("|");
+	var idx=1;
+	for (var i=0;i<TempArr.length;i++) {
+		var TempData=TempArr[i].split(",;,");
+		//alert(TempData[0]);
+    var no = new Option();
+    no.value = TempData[0];
+    no.text = TempData[2];
+    f.iNom.length=idx;
+    f.iNom[idx-1] = no;
+    idx++;
+	}
+	FillPoint();
+
+} 	
+function FillPoint(){ 
+	var f=form1;
+	var TempArr=eval('f.Opr_PLN.value').split("|");
+	var TempData=TempArr[f.iNom.selectedIndex].split(",;,");
+	f.iPoint.value=TempData[1];
+}
+function checkNumber(e)
+{
+var key = window.event ? e.keyCode : e.which;
+var keychar = String.fromCharCode(key);
+reg = /^[a-zA-Z]+$/;
+return !reg.test(keychar);
+}
+	</script>		
+	<form name=form1>
+<Input type=hidden name=vOpr value="S,;,Simpati|I,;,IM3|TR,;,Tri|XL,;,Xl">
+<Input type=hidden name=Opr_S value="010,;,10000|025,;,25000|100,;,100000">
+<Input type=hidden name=Opr_I value="005,;,5000|010,;,10000|025,;,25000|100,;,100000">
+<Input type=hidden name=Opr_TR value="010,;,10000|025,;,25000|050,;,50000|100,;,100000">
+<Input type=hidden name=Opr_PLN value="100,;,85,;,100.000|250,;,125,;,250.000">
+<Table>
+<tr><td><B><font size=4 color=blue>Nominal</font></B></td><td width=20px align=center>:</td><td><select name=iNom style="width:90px" onchange="FillPoint();"></select></td></tr>
+<tr><td><B><font size=4 color=blue>Point</font></B></td><td align=center>:</td><td><input text name=iPoint style="width:90px" readonly></select></td></tr>
+<tr><td><B><font size=4 color=blue>No Meter</font></B></td><td align=center>:</td><td><input type=number pattern="[0-9]*" name="custdata" style="width:90px" maxlength=12 onkeypress="return checkNumber(event);"></td></tr>
+</Table>
+
+<script>FillNom();</script>
+<BR><input type=button onclick="alert(myclick());">
+</form>
+<br>Free Voucher Fitness First Rp 500.000
+<br><br><b>Cara Mendapatkan :</b>
+<ol>
+<li>Klik Redeem untuk mendapatkan e-Voucher</li>
+<li>Masukkan Booking Code/Kode Pemesanan yang diperoleh saat membeli Samsung GALAXY S5 melalui www.galaxylaunchpack.com</li>
+<li>Tunjukkan e-Voucher yang sudah diperoleh ke Fitness First terdekat maksimum pada 15 Mei 2014</li>
+<li>Validasi e-Voucher oleh personel Fitness First</li>
+<li>Nikmati potongan Rp 500.000,- untuk Membership Fitness First (bagi new member) atau pembelian paket Personal Trainer (bagi exist member)</li>
+</ol>
+<br>
+Complimentary from Samsung GALAXY
+
+</body>
+</html>
+
+ 
